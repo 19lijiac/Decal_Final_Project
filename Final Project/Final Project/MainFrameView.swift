@@ -14,6 +14,8 @@ struct MainFrameView: View {
     
     @State private var polylinePoints: [CLLocationCoordinate2D] = []
     
+    
+    
         
         
     
@@ -37,7 +39,7 @@ struct MainFrameView: View {
              */
             
             
-            MapView(polylinePoints: $locationTracker.routeCoordinates).ignoresSafeArea()
+            MapView(polylinePoints: $locationTracker.routeCoordinates, centerOnUser: $locationTracker.centerOnUser).ignoresSafeArea()
             
             
             /* testing
@@ -89,6 +91,18 @@ struct MainFrameView: View {
                     Image(systemName: "clock.arrow.circlepath").frame(width:30, height:30)
                         .foregroundColor(.blue)
                 }
+                
+                Button(action: {
+                                        locationTracker.centerOnUser = true
+                                    }) {
+                                        Image(systemName: "location.fill")
+                                            .font(.system(size: 24))
+                                            .foregroundColor(.white)
+                                            .padding()
+                                            .background(Color.blue)
+                                            .clipShape(Circle())
+                                            .padding(.trailing)
+                                    }
                 
                 
                 

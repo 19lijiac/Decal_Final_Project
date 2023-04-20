@@ -15,9 +15,24 @@ struct ContentView: View {
     var body: some View {
         VStack {
             VStack{
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color(red: 0.50, green: 0.23, blue: 0.27, opacity: 0.50))
-                    .frame(width: 100, height: 100)
+                ZStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color(red: 0.50, green: 0.23, blue: 0.27, opacity: 0.50))
+                                .frame(width: 100, height: 100)
+                            Image("AppIcon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                        }
+//                RoundedRectangle(cornerRadius: 8)
+//                    .fill(Color(red: 0.50, green: 0.23, blue: 0.27, opacity: 0.50))
+//                    .frame(width: 100, height: 100)
+//                    .overlay(
+//                            Image("AppIcon")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 100, height: 100)
+//                        )
                 
                 Text("DISCOVER THE WORLD")
                     .font(.title3)

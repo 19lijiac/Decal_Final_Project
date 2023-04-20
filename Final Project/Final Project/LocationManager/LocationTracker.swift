@@ -13,8 +13,10 @@ import CoreLocation
 
 final class LocationTracker: NSObject, ObservableObject {
     @Published var location: CLLocation?
+    @Published var centerOnUser: Bool = true
     public var routeCoordinates : [CLLocationCoordinate2D] = []
     public var coordinatesCount : Int = 0
+    
     
      
     
@@ -47,6 +49,9 @@ extension LocationTracker: CLLocationManagerDelegate {
                 self.location = location
                 self.coordinatesCount = self.routeCoordinates.count
             }
+        if centerOnUser {
+                    centerOnUser = false
+                }
     }
 }
 
