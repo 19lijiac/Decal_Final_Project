@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		018EBDB329F0974100DF72E4 /* AppContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018EBDB229F0974000DF72E4 /* AppContentView.swift */; };
+		018EBDB729F09D6F00DF72E4 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018EBDB629F09D6F00DF72E4 /* LocationTracker.swift */; };
 		58446D1929EFCA15006EF0DA /* Final_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D1829EFCA15006EF0DA /* Final_ProjectApp.swift */; };
 		58446D1B29EFCA15006EF0DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D1A29EFCA15006EF0DA /* ContentView.swift */; };
 		58446D1D29EFCA16006EF0DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58446D1C29EFCA16006EF0DA /* Assets.xcassets */; };
@@ -19,8 +21,6 @@
 		58446D4929EFD090006EF0DA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4829EFD090006EF0DA /* SearchView.swift */; };
 		58446D4B29EFD0DB006EF0DA /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4A29EFD0DB006EF0DA /* AddFriendView.swift */; };
 		58446D4D29EFD127006EF0DA /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4C29EFD127006EF0DA /* SettingView.swift */; };
-		58446D4F29EFD15A006EF0DA /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4E29EFD15A006EF0DA /* NotesView.swift */; };
-		58446D5129EFD1A2006EF0DA /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D5029EFD1A2006EF0DA /* ChatView.swift */; };
 		58446D5329EFD2FE006EF0DA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D5229EFD2FE006EF0DA /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		018EBDB229F0974000DF72E4 /* AppContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentView.swift; sourceTree = "<group>"; };
+		018EBDB629F09D6F00DF72E4 /* LocationTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
+		018EBDB829F0CE9000DF72E4 /* Final-Project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Final-Project-Info.plist"; sourceTree = SOURCE_ROOT; };
 		58446D1529EFCA15006EF0DA /* Final Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Final Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58446D1829EFCA15006EF0DA /* Final_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Final_ProjectApp.swift; sourceTree = "<group>"; };
 		58446D1A29EFCA15006EF0DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,8 +60,6 @@
 		58446D4829EFD090006EF0DA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		58446D4A29EFD0DB006EF0DA /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		58446D4C29EFD127006EF0DA /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		58446D4E29EFD15A006EF0DA /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
-		58446D5029EFD1A2006EF0DA /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		58446D5229EFD2FE006EF0DA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		018EBDB529F09D4A00DF72E4 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				018EBDB629F09D6F00DF72E4 /* LocationTracker.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
 		58446D0C29EFCA15006EF0DA = {
 			isa = PBXGroup;
 			children = (
@@ -110,15 +119,16 @@
 		58446D1729EFCA15006EF0DA /* Final Project */ = {
 			isa = PBXGroup;
 			children = (
+				018EBDB829F0CE9000DF72E4 /* Final-Project-Info.plist */,
 				58446D1829EFCA15006EF0DA /* Final_ProjectApp.swift */,
+				018EBDB529F09D4A00DF72E4 /* LocationManager */,
+				018EBDB229F0974000DF72E4 /* AppContentView.swift */,
 				58446D1A29EFCA15006EF0DA /* ContentView.swift */,
 				58446D5229EFD2FE006EF0DA /* ProfileView.swift */,
 				58446D4429EFCEBF006EF0DA /* LogInView.swift */,
 				58446D4629EFD00A006EF0DA /* MainFrameView.swift */,
 				58446D4A29EFD0DB006EF0DA /* AddFriendView.swift */,
 				58446D4C29EFD127006EF0DA /* SettingView.swift */,
-				58446D4E29EFD15A006EF0DA /* NotesView.swift */,
-				58446D5029EFD1A2006EF0DA /* ChatView.swift */,
 				58446D1C29EFCA16006EF0DA /* Assets.xcassets */,
 				58446D4829EFD090006EF0DA /* SearchView.swift */,
 				58446D1E29EFCA16006EF0DA /* Preview Content */,
@@ -281,16 +291,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				018EBDB329F0974100DF72E4 /* AppContentView.swift in Sources */,
 				58446D4B29EFD0DB006EF0DA /* AddFriendView.swift in Sources */,
 				58446D4929EFD090006EF0DA /* SearchView.swift in Sources */,
 				58446D5329EFD2FE006EF0DA /* ProfileView.swift in Sources */,
 				58446D1B29EFCA15006EF0DA /* ContentView.swift in Sources */,
 				58446D4D29EFD127006EF0DA /* SettingView.swift in Sources */,
-				58446D5129EFD1A2006EF0DA /* ChatView.swift in Sources */,
 				58446D4729EFD00A006EF0DA /* MainFrameView.swift in Sources */,
 				58446D4529EFCEBF006EF0DA /* LogInView.swift in Sources */,
-				58446D4F29EFD15A006EF0DA /* NotesView.swift in Sources */,
 				58446D1929EFCA15006EF0DA /* Final_ProjectApp.swift in Sources */,
+				018EBDB729F09D6F00DF72E4 /* LocationTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,11 +461,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Final Project/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Final-Project-Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Locations needed to see users' current location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,11 +492,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Final Project/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Final-Project-Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Locations needed to see users' current location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

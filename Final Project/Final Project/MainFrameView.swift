@@ -6,86 +6,98 @@
 //
 
 import SwiftUI
+import MapKit
+
 
 struct MainFrameView: View {
-    var body: some View {
-        VStack(alignment: .trailing, spacing: 89.46) {
-            ZStack {
-                    Ellipse()
-                    .fill(Color.white)
-                    .frame(width: 32, height: 32)
-
-                    RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.black)
-                    .frame(width: 20, height: 19)
+    @StateObject private var locationTracker = LocationTracker()
+    
+    
+    
+    var region: Binding<MKCoordinateRegion>? {
+            guard let location = locationTracker.location else {
+                return MKCoordinateRegion.goldenGateRegion().getBinding()
             }
-            .frame(width: 32, height: 32)
-
-            ZStack {
-                    Ellipse()
-                    .fill(Color.white)
-                    .frame(width: 32, height: 32)
-
-                    RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.black)
-                    .frame(width: 20, height: 19)
-            }
-            .frame(width: 32, height: 32)
-
-            ZStack {
-                Rectangle()
-                .fill(Color(red: 0.65, green: 0.01, blue: 0.42))
-                .offset(x: -5, y: 10)
-                .frame(width: 30, height: 60)
-
-                Rectangle()
-                .fill(Color(red: 0.99, green: 0.22, blue: 0.01))
-                .offset(x: 10, y: 25)
-                .frame(width: 60, height: 30)
-            }
-            .frame(width: 40, height: 40)
-            .background(Color.white)
-            .cornerRadius(30)
-            .padding(.horizontal, 4)
-            .padding(.top, 4)
-            .padding(.bottom, 19)
-            .frame(width: 48, height: 63.22)
-            .background(Color(red: 1, green: 0.50, blue: 0))
-            .cornerRadius(8)
-
-            RoundedRectangle(cornerRadius: 8)
-            .fill(Color(red: 1, green: 0, blue: 0))
-            .frame(width: 25, height: 22)
-
-            RoundedRectangle(cornerRadius: 8)
-            .fill(Color(red: 1, green: 1, blue: 0))
-            .frame(width: 19.25, height: 22)
-
-            RoundedRectangle(cornerRadius: 8)
-            .fill(Color(red: 0, green: 0, blue: 1))
-            .frame(width: 22, height: 22)
-
-            RoundedRectangle(cornerRadius: 8)
-            .fill(Color.black)
-            .frame(width: 35, height: 35)
-            .padding(.vertical, 14)
-            .padding(.leading, 75)
-            .padding(.trailing, 77)
-            .frame(width: 187, height: 63)
-            .background(Color.white)
-            .cornerRadius(30)
+            
+            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+            
+            return region.getBinding()
         }
-        .padding(.leading, 91)
-        .padding(.trailing, 23)
-        .padding(.top, 14)
-        .padding(.bottom, 37)
-        .frame(width: 390, height: 844)
-        .background(Color(red: 0.50, green: 0.23, blue: 0.27, opacity: 0.50))
+    
+    
+    var body: some View {
+        ZStack {
+            //comment out so Xcode doesn't crash
+        
+            if let region = region {
+                Map(coordinateRegion: region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.follow))
+                    .ignoresSafeArea()
+                
+            }
+             
+             
+                
+            Button(action: {print("find friend pressed")}) {
+                Image(systemName: "magnifyingglass")
+                    .resizable()
+                    .frame(width:30, height:30)
+                    .frame(width: 187, height: 63)
+                    .foregroundColor(.black).background(.white).clipShape(Rectangle()).cornerRadius(30)
+            }.padding(.top, 600)
+            
+                
+                
+            VStack(alignment: .trailing){
+                Button(action: {print("setting pressed")}) {
+                    Image(systemName: "gearshape.fill").frame(width:30, height:30)
+                        .foregroundColor(.black).background(.white).clipShape(Circle())
+                }
+                
+                Button(action: {print("add friend pressed")}) {
+                    Image(systemName: "person.fill.badge.plus").frame(width:30, height:30)
+                        .foregroundColor(.black).background(.white).clipShape(Circle())
+                }
+                
+                Spacer()
+                
+                Button(action: {print("save location pressed")}) {
+                    Image(systemName: "heart.fill").frame(width:30, height:30)
+                        .foregroundColor(.red)
+                }
+                
+                Button(action: {print("add stories pressed")}) {
+                    Image(systemName: "pencil").frame(width:30, height:30)
+                        .foregroundColor(.yellow)
+                }
+                
+                Button(action: {print("saved paths pressed")}) {
+                    Image(systemName: "clock.arrow.circlepath").frame(width:30, height:30)
+                        .foregroundColor(.blue)
+                }
+                
+                
+                
+            }.padding(.leading, 275)
+            
+            
+        }
     }
 }
 
 struct MainFrameView_Previews: PreviewProvider {
     static var previews: some View {
         MainFrameView()
+    }
+}
+
+
+extension MKCoordinateRegion {
+    
+    static func goldenGateRegion() -> MKCoordinateRegion {
+        MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.819527098978355, longitude:  -122.47854602016669), latitudinalMeters: 5000, longitudinalMeters: 5000)
+    }
+    
+    func getBinding() -> Binding<MKCoordinateRegion>? {
+        return Binding<MKCoordinateRegion>(.constant(self))
     }
 }

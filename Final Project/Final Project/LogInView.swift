@@ -8,61 +8,56 @@
 import SwiftUI
 
 struct LogInView: View {
+    @State var email = ""
+    @State var password = ""
+    @Binding var mainPageStatus: Bool
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 26.50) {
-            Text("LOG IN")
-            .font(.largeTitle)
-            .multilineTextAlignment(.center)
-            .frame(width: 159, height: 74)
-            .tracking(1.20)
-
-            VStack(spacing: 44) {
-                    Text("EMAIL:")
-                    .font(.subheadline)
-                    .tracking(0.60)
-
-                    Rectangle()
-                    .frame(width: 281, height: 1)
+        VStack {
+            VStack(alignment:.leading){
+                Text("LOG IN")
+                    .font(.largeTitle)
+                    .tracking(1.20)
+                    .padding(.horizontal, 30)
+                
+                
+                TextField("Email", text: $email)
+                                .padding(.horizontal, 30)
+                            Divider()
+                                .padding(.horizontal, 30)
+                    
+                
+                TextField("Password", text: $password)
+                                .padding(.horizontal, 30).padding(.top, 20)
+                            Divider()
+                                .padding(.horizontal, 30)
+                
+                Text("FORGOT PASSWORD?")
+                    .font(.caption2)
+                    .tracking(0.40)
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 30)
+            }.padding(.bottom, 40)
+                .padding(.top, 40)
+            
+            
+            Button(action: {mainPageStatus.toggle()}) {
+                ZStack(alignment: .center){
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.black)
+                        .frame(width: 316, height: 50)
+                    
+                    Text("LOG IN")
+                        .font(.system(size: 15))
+                        .foregroundColor(.white)
+                        .tracking(0.72)
+                }
             }
-            .frame(width: 281, height: 61)
-
-            VStack(spacing: 44) {
-                    Text("PASSWORD:")
-                    .font(.subheadline)
-                    .tracking(0.60)
-
-                    Rectangle()
-                    .frame(width: 281, height: 1)
-            }
-            .frame(width: 281, height: 61)
-
-            Text("FORGOT PASSWORD?")
-            .font(.caption2)
-            .tracking(0.40)
-
-            Text("LOG IN")
-            .fontWeight(.medium)
-            .font(.title3)
-            .tracking(0.72)
-            .padding(.leading, 107)
-            .padding(.trailing, 111)
-            .padding(.top, 16)
-            .padding(.bottom, 15)
-            .frame(width: 278, height: 52)
-            .background(Color.black)
-            .cornerRadius(10)
         }
-        .padding(.leading, 22)
-        .padding(.trailing, 59)
-        .padding(.top, 43)
-        .padding(.bottom, 436)
-        .frame(width: 390, height: 844)
+        .padding(.bottom, 450)
         .background(Color.white)
-    }
-}
-
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        LogInView()
+        
+        
+        
     }
 }
