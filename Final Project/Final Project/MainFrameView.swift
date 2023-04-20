@@ -10,31 +10,46 @@ import MapKit
 
 
 struct MainFrameView: View {
-    @StateObject private var locationTracker = LocationTracker()
+    @ObservedObject var locationTracker = LocationTracker()
+    
+    @State private var polylinePoints: [CLLocationCoordinate2D] = []
+    
+        
+        
+    
+    
+    //default location set to Golden Gate Bridge
     
     
     
-    var region: Binding<MKCoordinateRegion>? {
-            guard let location = locationTracker.location else {
-                return MKCoordinateRegion.goldenGateRegion().getBinding()
-            }
-            
-            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-            
-            return region.getBinding()
-        }
     
     
     var body: some View {
+        
         ZStack {
             //comment out so Xcode doesn't crash
-        
+            /*
             if let region = region {
-                Map(coordinateRegion: region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.follow))
+                Map(coordinateRegion: region, interactionModes: .all, showsUserLocation: true)
                     .ignoresSafeArea()
                 
             }
-             
+             */
+            
+            
+            MapView(polylinePoints: $locationTracker.routeCoordinates).ignoresSafeArea()
+            
+            
+            /* testing
+            if locationTracker.coordinatesCount > 1 {
+                Text("\(locationTracker.routeCoordinates[locationTracker.coordinatesCount - 1])").foregroundColor(.black)
+            }
+            */
+            
+            
+            
+            
+            
              
                 
             Button(action: {print("find friend pressed")}) {
