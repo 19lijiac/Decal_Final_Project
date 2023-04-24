@@ -25,7 +25,7 @@ struct AppContentView: View {
                     } else if navigationManager.currentView == .settingView {
                         SettingView(navigationManager: navigationManager, isDarkMode: $isDarkMode)
                     } else if navigationManager.currentView == .profileView {
-                       ProfileView(navigationManager: navigationManager)
+                        ProfileView(locationTracker: locationTracker, navigationManager: navigationManager)
                     } else if navigationManager.currentView == .addFriendView {
                         AddFriendView(navigationManager: navigationManager)
                     } else if navigationManager.currentView == .addStoryView {

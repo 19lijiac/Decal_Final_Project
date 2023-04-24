@@ -31,7 +31,7 @@ final class Coordinator: NSObject, MKMapViewDelegate {
             initialRegionSet = true
         } else if control.centerOnUser {
             let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-            mapView.setRegion(region, animated: true)
+            mapView.setRegion(region, animated: false)
         }
     }
     @objc func didDragMap(_ gestureRecognizer: UIGestureRecognizer) {
@@ -45,7 +45,7 @@ final class Coordinator: NSObject, MKMapViewDelegate {
     func setInitialRegion(for mapView: MKMapView) {
             if let userLocation = mapView.userLocation.location {
                 let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-                mapView.setRegion(region, animated: true)
+                mapView.setRegion(region, animated: false)
             }
         }
 }

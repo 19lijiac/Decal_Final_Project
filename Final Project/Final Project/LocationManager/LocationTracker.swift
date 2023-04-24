@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 
 
-//locationTracker is also the data model for paths
+//viewModel
 
 final class LocationTracker: NSObject, ObservableObject {
     @Published var location: CLLocation?
@@ -43,7 +43,6 @@ final class LocationTracker: NSObject, ObservableObject {
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
     }
-    
 }
 
 extension LocationTracker: CLLocationManagerDelegate {
@@ -69,18 +68,20 @@ extension LocationTracker: CLLocationManagerDelegate {
                     
                             // Append `location` to `routeCoordinates` only when it is not equal to the last element
                     self.routeCoordinates.append(location.coordinate)
-                        } else if self.routeCoordinates.isEmpty {
-                            // If `routeCoordinates` is empty, append `location` as the first element
-                            self.routeCoordinates.append(location.coordinate)
-                        }
+                } else if self.routeCoordinates.isEmpty {
+                    // If `routeCoordinates` is empty, append `location` as the first element
+                    self.routeCoordinates.append(location.coordinate)
+                }
                 //self.routeCoordinates.append(location)
                 self.location = location
                 self.coordinatesCount = self.routeCoordinates.count
                 self.polyline = MKPolyline(coordinates: self.routeCoordinates, count: self.coordinatesCount)
             }
+        /*
         if centerOnUser {
-                    centerOnUser = false
-                }
+            centerOnUser = false
+        }
+         */
     }
 }
 

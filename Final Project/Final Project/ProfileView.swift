@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @ObservedObject var locationTracker = LocationTracker()
+    //@ObservedObject var locationTracker = LocationTracker()
+    @ObservedObject var locationTracker : LocationTracker
     @ObservedObject var navigationManager: ViewNavigationManager
     
     var body: some View {
