@@ -11,50 +11,26 @@ import MapKit
 
 struct MainFrameView: View {
     @ObservedObject var locationTracker = LocationTracker()
+    @ObservedObject var navigationManager: ViewNavigationManager
     
+    @State private var showingBottomSheet = false
     @State private var polylinePoints: [CLLocationCoordinate2D] = []
-    
-    
-    
-        
-        
-    
-    
-    //default location set to Golden Gate Bridge
-    
-    
-    
     
     
     var body: some View {
         
         ZStack {
-            //comment out so Xcode doesn't crash
-            /*
-            if let region = region {
-                Map(coordinateRegion: region, interactionModes: .all, showsUserLocation: true)
-                    .ignoresSafeArea()
-                
-            }
-             */
-            
-            
             MapView(polylinePoints: $locationTracker.routeCoordinates, centerOnUser: $locationTracker.centerOnUser).ignoresSafeArea()
             
             
-            /* testing
+            /* test if coordinates are stored in the array
             if locationTracker.coordinatesCount > 1 {
                 Text("\(locationTracker.routeCoordinates[locationTracker.coordinatesCount - 1])").foregroundColor(.black)
             }
             */
             
-            
-            
-            
-            
-             
                 
-            Button(action: {print("find friend pressed")}) {
+            Button(action: {showingBottomSheet.toggle()}) {
                 Image(systemName: "magnifyingglass")
                     .resizable()
                     .frame(width:30, height:30)
@@ -65,7 +41,7 @@ struct MainFrameView: View {
                 
                 
             VStack(alignment: .trailing){
-                Button(action: {print("setting pressed")}) {
+                Button(action: navigationManager.goToSettingView) {
                     Image(systemName: "gearshape.fill").frame(width:30, height:30)
                         .foregroundColor(.black).background(.white).clipShape(Circle())
                 }
@@ -103,21 +79,28 @@ struct MainFrameView: View {
                                             .clipShape(Circle())
                                             .padding(.trailing)
                                     }
-                
-                
-                
             }.padding(.leading, 275)
-            
-            
+        }.sheet(isPresented: $showingBottomSheet) {
+                BottomSheetView().presentationDetents([.height(600)])
         }
     }
 }
 
-struct MainFrameView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainFrameView()
+//TODO: Fetch Friend List from Firebase and display in sheet view
+struct BottomSheetView: View {
+    @State private var searchText = ""
+    
+    var body: some View {
+        NavigationView{
+            Text("Searching for \(searchText)?")
+                .searchable(text: $searchText)
+                .navigationTitle("Friends List")
+                .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
+
+
 
 
 extension MKCoordinateRegion {

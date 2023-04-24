@@ -10,7 +10,8 @@ import SwiftUI
 struct LogInView: View {
     @State var email = ""
     @State var password = ""
-    @Binding var mainPageStatus: Bool
+    @ObservedObject var navigationManager: ViewNavigationManager
+    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         VStack {
@@ -21,10 +22,11 @@ struct LogInView: View {
                     .padding(.horizontal, 30)
                 
                 
-                TextField("Email", text: $email)
+                TextField("Email", text: $email).focused($isTextFieldFocused).onAppear{isTextFieldFocused = true}
                                 .padding(.horizontal, 30)
                             Divider()
                                 .padding(.horizontal, 30)
+                
                     
                 
                 TextField("Password", text: $password)
@@ -32,16 +34,17 @@ struct LogInView: View {
                             Divider()
                                 .padding(.horizontal, 30)
                 
-                Text("FORGOT PASSWORD?")
-                    .font(.caption2)
-                    .tracking(0.40)
-                    .foregroundColor(.blue)
-                    .padding(.horizontal, 30)
+                Button(action: navigationManager.goToGetStartedView) {
+                    Text("Doesn't have an account yet?")
+                }.font(.caption2)
+                .tracking(0.40)
+                .foregroundColor(.blue)
+                .padding(.horizontal, 30)
             }.padding(.bottom, 40)
                 .padding(.top, 40)
             
             
-            Button(action: {mainPageStatus.toggle()}) {
+            Button(action: navigationManager.goToMainFrameView) {
                 ZStack(alignment: .center){
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.black)

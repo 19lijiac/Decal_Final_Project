@@ -8,26 +8,21 @@
 import SwiftUI
 
 struct AppContentView: View {
-    @State var logInStatus = false
-    @State var getStartedStatus = false
-    @State var mainPageStatus = false
+    @ObservedObject var navigationManager = ViewNavigationManager()
+    
     var body: some View {
-        return Group {
-            if logInStatus {
-                if mainPageStatus {
-                    MainFrameView()
-                } else {
-                    LogInView(mainPageStatus: $mainPageStatus)
+        VStack {
+                    if navigationManager.currentView == .contentView {
+                        ContentView(navigationManager: navigationManager)
+                    } else if navigationManager.currentView == .loginView {
+                        LogInView(navigationManager: navigationManager)
+                    } else if navigationManager.currentView == .mainFrameView {
+                        MainFrameView(navigationManager: navigationManager)
+                    } else if navigationManager.currentView == .getStartedView {
+                        GetStartedView(navigationManager: navigationManager)
+                    } else if navigationManager.currentView == .settingView {
+                        SettingView(navigationManager: navigationManager)
+                    }
                 }
-            } else {
-                ContentView(logInStatus: $logInStatus, getStartedStatus: $getStartedStatus)
-            }
-        }
-    }
-}
-
-struct AppContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppContentView()
     }
 }

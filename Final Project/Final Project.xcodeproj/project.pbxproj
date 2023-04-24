@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		018EBDB329F0974100DF72E4 /* AppContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018EBDB229F0974000DF72E4 /* AppContentView.swift */; };
 		018EBDB729F09D6F00DF72E4 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018EBDB629F09D6F00DF72E4 /* LocationTracker.swift */; };
+		01F099DB29F5D00A007988E1 /* ViewNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DA29F5D00A007988E1 /* ViewNavigationManager.swift */; };
+		01F099DD29F5E2EC007988E1 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DC29F5E2EC007988E1 /* GetStartedView.swift */; };
+		01F099E029F5E8C9007988E1 /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DF29F5E8C9007988E1 /* FriendsModel.swift */; };
 		01F8C12D29F10F1D00E91E9A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8C12C29F10F1D00E91E9A /* MapView.swift */; };
 		01F8C12F29F10FCB00E91E9A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8C12E29F10FCB00E91E9A /* Coordinator.swift */; };
 		58446D1929EFCA15006EF0DA /* Final_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D1829EFCA15006EF0DA /* Final_ProjectApp.swift */; };
@@ -47,6 +50,9 @@
 		018EBDB229F0974000DF72E4 /* AppContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentView.swift; sourceTree = "<group>"; };
 		018EBDB629F09D6F00DF72E4 /* LocationTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
 		018EBDB829F0CE9000DF72E4 /* Final-Project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Final-Project-Info.plist"; sourceTree = SOURCE_ROOT; };
+		01F099DA29F5D00A007988E1 /* ViewNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNavigationManager.swift; sourceTree = "<group>"; };
+		01F099DC29F5E2EC007988E1 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
+		01F099DF29F5E8C9007988E1 /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
 		01F8C12C29F10F1D00E91E9A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		01F8C12E29F10FCB00E91E9A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		58446D1529EFCA15006EF0DA /* Final Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Final Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,25 +101,19 @@
 		018EBDB529F09D4A00DF72E4 /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
+				01F8C12E29F10FCB00E91E9A /* Coordinator.swift */,
+				01F8C12C29F10F1D00E91E9A /* MapView.swift */,
 				018EBDB629F09D6F00DF72E4 /* LocationTracker.swift */,
 			);
 			path = LocationManager;
 			sourceTree = "<group>";
 		};
-		01F8C12A29F10ED200E91E9A /* MapViews */ = {
+		01F099DE29F5E88F007988E1 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				01F8C12C29F10F1D00E91E9A /* MapView.swift */,
+				01F099DF29F5E8C9007988E1 /* FriendsModel.swift */,
 			);
-			path = MapViews;
-			sourceTree = "<group>";
-		};
-		01F8C12B29F10EF100E91E9A /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				01F8C12E29F10FCB00E91E9A /* Coordinator.swift */,
-			);
-			path = Coordinator;
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		58446D0C29EFCA15006EF0DA = {
@@ -139,20 +139,21 @@
 		58446D1729EFCA15006EF0DA /* Final Project */ = {
 			isa = PBXGroup;
 			children = (
-				01F8C12B29F10EF100E91E9A /* Coordinator */,
-				01F8C12A29F10ED200E91E9A /* MapViews */,
 				018EBDB829F0CE9000DF72E4 /* Final-Project-Info.plist */,
 				58446D1829EFCA15006EF0DA /* Final_ProjectApp.swift */,
+				01F099DE29F5E88F007988E1 /* DataModel */,
 				018EBDB529F09D4A00DF72E4 /* LocationManager */,
+				01F099DA29F5D00A007988E1 /* ViewNavigationManager.swift */,
 				018EBDB229F0974000DF72E4 /* AppContentView.swift */,
 				58446D1A29EFCA15006EF0DA /* ContentView.swift */,
-				58446D5229EFD2FE006EF0DA /* ProfileView.swift */,
 				58446D4429EFCEBF006EF0DA /* LogInView.swift */,
+				01F099DC29F5E2EC007988E1 /* GetStartedView.swift */,
 				58446D4629EFD00A006EF0DA /* MainFrameView.swift */,
+				58446D5229EFD2FE006EF0DA /* ProfileView.swift */,
 				58446D4A29EFD0DB006EF0DA /* AddFriendView.swift */,
 				58446D4C29EFD127006EF0DA /* SettingView.swift */,
-				58446D1C29EFCA16006EF0DA /* Assets.xcassets */,
 				58446D4829EFD090006EF0DA /* SearchView.swift */,
+				58446D1C29EFCA16006EF0DA /* Assets.xcassets */,
 				58446D1E29EFCA16006EF0DA /* Preview Content */,
 			);
 			path = "Final Project";
@@ -320,9 +321,12 @@
 				58446D5329EFD2FE006EF0DA /* ProfileView.swift in Sources */,
 				58446D1B29EFCA15006EF0DA /* ContentView.swift in Sources */,
 				58446D4D29EFD127006EF0DA /* SettingView.swift in Sources */,
+				01F099DB29F5D00A007988E1 /* ViewNavigationManager.swift in Sources */,
 				58446D4729EFD00A006EF0DA /* MainFrameView.swift in Sources */,
+				01F099E029F5E8C9007988E1 /* FriendsModel.swift in Sources */,
 				01F8C12F29F10FCB00E91E9A /* Coordinator.swift in Sources */,
 				58446D4529EFCEBF006EF0DA /* LogInView.swift in Sources */,
+				01F099DD29F5E2EC007988E1 /* GetStartedView.swift in Sources */,
 				58446D1929EFCA15006EF0DA /* Final_ProjectApp.swift in Sources */,
 				018EBDB729F09D6F00DF72E4 /* LocationTracker.swift in Sources */,
 			);
@@ -487,7 +491,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Final-Project-Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Locations needed to see users' current location";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -518,7 +521,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Final-Project-Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Locations needed to see users' current location";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
