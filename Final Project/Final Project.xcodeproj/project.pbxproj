@@ -12,6 +12,7 @@
 		01F099DB29F5D00A007988E1 /* ViewNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DA29F5D00A007988E1 /* ViewNavigationManager.swift */; };
 		01F099DD29F5E2EC007988E1 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DC29F5E2EC007988E1 /* GetStartedView.swift */; };
 		01F099E029F5E8C9007988E1 /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DF29F5E8C9007988E1 /* FriendsModel.swift */; };
+		01F099E229F635B0007988E1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099E129F635B0007988E1 /* AppState.swift */; };
 		01F8C12D29F10F1D00E91E9A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8C12C29F10F1D00E91E9A /* MapView.swift */; };
 		01F8C12F29F10FCB00E91E9A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8C12E29F10FCB00E91E9A /* Coordinator.swift */; };
 		58446D1929EFCA15006EF0DA /* Final_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D1829EFCA15006EF0DA /* Final_ProjectApp.swift */; };
@@ -53,6 +54,7 @@
 		01F099DA29F5D00A007988E1 /* ViewNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNavigationManager.swift; sourceTree = "<group>"; };
 		01F099DC29F5E2EC007988E1 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		01F099DF29F5E8C9007988E1 /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
+		01F099E129F635B0007988E1 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		01F8C12C29F10F1D00E91E9A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		01F8C12E29F10FCB00E91E9A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		58446D1529EFCA15006EF0DA /* Final Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Final Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +157,7 @@
 				58446D4829EFD090006EF0DA /* SearchView.swift */,
 				58446D1C29EFCA16006EF0DA /* Assets.xcassets */,
 				58446D1E29EFCA16006EF0DA /* Preview Content */,
+				01F099E129F635B0007988E1 /* AppState.swift */,
 			);
 			path = "Final Project";
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				58446D4729EFD00A006EF0DA /* MainFrameView.swift in Sources */,
 				01F099E029F5E8C9007988E1 /* FriendsModel.swift in Sources */,
 				01F8C12F29F10FCB00E91E9A /* Coordinator.swift in Sources */,
+				01F099E229F635B0007988E1 /* AppState.swift in Sources */,
 				58446D4529EFCEBF006EF0DA /* LogInView.swift in Sources */,
 				01F099DD29F5E2EC007988E1 /* GetStartedView.swift in Sources */,
 				58446D1929EFCA15006EF0DA /* Final_ProjectApp.swift in Sources */,

@@ -15,12 +15,21 @@ struct MainFrameView: View {
     
     @State private var showingBottomSheet = false
     @State private var polylinePoints: [CLLocationCoordinate2D] = []
+    @Binding var isDarkMode : Bool
+
+    
+    //testing
+    @State var isLinkActive = false
     
     
     var body: some View {
         
         ZStack {
+            /*
             MapView(polylinePoints: $locationTracker.routeCoordinates, centerOnUser: $locationTracker.centerOnUser).ignoresSafeArea()
+             */
+            MapView(polylinePoints: $locationTracker.routeCoordinates, centerOnUser: $locationTracker.centerOnUser, isDarkMode: $isDarkMode).ignoresSafeArea()
+            
             
             
             /* test if coordinates are stored in the array
@@ -38,8 +47,12 @@ struct MainFrameView: View {
                     .foregroundColor(.black).background(.white).clipShape(Rectangle()).cornerRadius(30)
             }.padding(.top, 600)
             
-                
-                
+            
+           
+               
+            
+            
+            
             VStack(alignment: .trailing){
                 Button(action: navigationManager.goToSettingView) {
                     Image(systemName: "gearshape.fill").frame(width:30, height:30)
@@ -80,6 +93,7 @@ struct MainFrameView: View {
                                             .padding(.trailing)
                                     }
             }.padding(.leading, 275)
+             
         }.sheet(isPresented: $showingBottomSheet) {
                 BottomSheetView().presentationDetents([.height(600)])
         }
