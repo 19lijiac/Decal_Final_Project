@@ -10,6 +10,7 @@ import SwiftUI
 struct AppContentView: View {
     @ObservedObject var navigationManager = ViewNavigationManager()
     @State private var isDarkMode = false
+    @StateObject var locationTracker = LocationTracker()
     
     var body: some View {
         VStack {
@@ -18,7 +19,7 @@ struct AppContentView: View {
                     } else if navigationManager.currentView == .loginView {
                         LogInView(navigationManager: navigationManager)
                     } else if navigationManager.currentView == .mainFrameView {
-                        MainFrameView(navigationManager: navigationManager, isDarkMode: $isDarkMode)
+                        MainFrameView(locationTracker: locationTracker, navigationManager: navigationManager, isDarkMode: $isDarkMode)
                     } else if navigationManager.currentView == .getStartedView {
                         GetStartedView(navigationManager: navigationManager)
                     } else if navigationManager.currentView == .settingView {

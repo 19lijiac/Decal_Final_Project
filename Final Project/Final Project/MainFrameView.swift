@@ -10,18 +10,19 @@ import MapKit
 
 
 struct MainFrameView: View {
-    @ObservedObject var locationTracker = LocationTracker()
+    @ObservedObject var locationTracker : LocationTracker
     @ObservedObject var navigationManager: ViewNavigationManager
     @StateObject private var noteStore = NoteStore()
     @State private var showingBottomSheet = false
-    @State private var polylinePoints: [CLLocationCoordinate2D] = []
     @Binding var isDarkMode : Bool
+    //@State private var polylinePoints: [CLLocationCoordinate2D] = []
+    
     
     
 
     
     //testing
-    @State var isLinkActive = false
+    //@State var isLinkActive = false
     
     
     var body: some View {
@@ -30,7 +31,7 @@ struct MainFrameView: View {
             /*
             MapView(polylinePoints: $locationTracker.routeCoordinates, centerOnUser: $locationTracker.centerOnUser).ignoresSafeArea()
              */
-            MapView(polylinePoints: $locationTracker.routeCoordinates, centerOnUser: $locationTracker.centerOnUser, isDarkMode: $isDarkMode).ignoresSafeArea()
+            MapView(centerOnUser: $locationTracker.centerOnUser, isDarkMode: $isDarkMode, viewModel: locationTracker).ignoresSafeArea()
             
             
             
@@ -48,10 +49,6 @@ struct MainFrameView: View {
                     .frame(width: 187, height: 63)
                     .foregroundColor(.black).background(.white).clipShape(Rectangle()).cornerRadius(30)
             }.padding(.top, 600)
-            
-            
-           
-               
             
             
             
@@ -118,14 +115,16 @@ struct BottomSheetView: View {
 
 
 
-
-extension MKCoordinateRegion {
-    
-    static func goldenGateRegion() -> MKCoordinateRegion {
-        MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.819527098978355, longitude:  -122.47854602016669), latitudinalMeters: 5000, longitudinalMeters: 5000)
-    }
-    
-    func getBinding() -> Binding<MKCoordinateRegion>? {
-        return Binding<MKCoordinateRegion>(.constant(self))
-    }
-}
+/*
+ 
+ extension MKCoordinateRegion {
+ 
+ static func goldenGateRegion() -> MKCoordinateRegion {
+ MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.819527098978355, longitude:  -122.47854602016669), latitudinalMeters: 5000, longitudinalMeters: 5000)
+ }
+ 
+ func getBinding() -> Binding<MKCoordinateRegion>? {
+ return Binding<MKCoordinateRegion>(.constant(self))
+ }
+ }
+ */

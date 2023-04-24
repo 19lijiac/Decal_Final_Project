@@ -7,12 +7,14 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 
-
+//locationTracker is also the data model for paths
 
 final class LocationTracker: NSObject, ObservableObject {
     @Published var location: CLLocation?
+    @Published var polyline: MKPolyline?
     @Published var centerOnUser: Bool = true
     @Published var cityName: String = ""
     @Published var stateName: String = ""
@@ -74,6 +76,7 @@ extension LocationTracker: CLLocationManagerDelegate {
                 //self.routeCoordinates.append(location)
                 self.location = location
                 self.coordinatesCount = self.routeCoordinates.count
+                self.polyline = MKPolyline(coordinates: self.routeCoordinates, count: self.coordinatesCount)
             }
         if centerOnUser {
                     centerOnUser = false

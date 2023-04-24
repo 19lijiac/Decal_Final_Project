@@ -10,9 +10,10 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
-    @Binding var polylinePoints: [CLLocationCoordinate2D]
+    //@Binding var polylinePoints: [CLLocationCoordinate2D]
     @Binding var centerOnUser: Bool
     @Binding var isDarkMode: Bool
+    @ObservedObject var viewModel: LocationTracker
     
     
     
@@ -43,15 +44,17 @@ struct MapView: UIViewRepresentable {
         uiView.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
             
         
-        if centerOnUser, let userLocation = uiView.userLocation.location {
+        if centerOnUser, let userLocation = viewModel.location {
                     let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
                     uiView.setRegion(region, animated: false)
             DispatchQueue.main.async {
                         centerOnUser = false
                     }
                 }
-        let polyline = MKPolyline(coordinates: polylinePoints, count: polylinePoints.count)
-               uiView.addOverlay(polyline)
+        if let polyline = viewModel.polyline {
+                    uiView.removeOverlays(uiView.overlays)
+                    uiView.addOverlay(polyline)
+                }
     }
     
 }
