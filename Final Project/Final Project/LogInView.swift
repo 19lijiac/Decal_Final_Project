@@ -18,11 +18,12 @@ struct LogInView: View {
             VStack(alignment:.leading){
                 Text("LOG IN")
                     .font(.largeTitle)
+                    .foregroundColor(.black)
                     .tracking(1.20)
                     .padding(.horizontal, 30)
                 
                 
-                TextField("Email", text: $email).focused($isTextFieldFocused).onAppear{isTextFieldFocused = true}
+                TextField("Email", text: $email).focused($isTextFieldFocused).onAppear{isTextFieldFocused = true}.foregroundColor(.black)
                                 .padding(.horizontal, 30)
                             Divider()
                                 .padding(.horizontal, 30)
@@ -30,7 +31,7 @@ struct LogInView: View {
                     
                 
                 TextField("Password", text: $password)
-                                .padding(.horizontal, 30).padding(.top, 20)
+                    .padding(.horizontal, 30).padding(.top, 20).foregroundColor(.black)
                             Divider()
                                 .padding(.horizontal, 30)
                 
@@ -57,7 +58,8 @@ struct LogInView: View {
                 }
             }
         }
-        .padding(.bottom, 450)
+        .padding(.top, 10)
+        .padding(.bottom, 150)
         .background(Color.white)
         
         

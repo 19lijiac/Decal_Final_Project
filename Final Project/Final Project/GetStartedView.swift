@@ -19,23 +19,29 @@ struct GetStartedView: View {
             VStack(alignment:.leading){
                 Text("SIGN UP")
                     .font(.largeTitle)
+                    .foregroundColor(.black)
                     .tracking(1.20)
                     .padding(.horizontal, 30)
                 
                 
-                TextField("Email", text: $email).focused($isTextFieldFocused).onAppear{isTextFieldFocused = true}
+                TextField("Email", text: $email)
+                    .focused($isTextFieldFocused)
+                    .onAppear{isTextFieldFocused = true}
                                 .padding(.horizontal, 30)
+                                .foregroundColor(.black)
                             Divider()
                                 .padding(.horizontal, 30)
                     
                 
                 TextField("Password", text: $password)
                                 .padding(.horizontal, 30).padding(.top, 20)
+                                .foregroundColor(.black)
                             Divider()
                                 .padding(.horizontal, 30)
                 
                 TextField("Retype Password", text: $retypePassword)
                                 .padding(.horizontal, 30).padding(.top, 20)
+                                .foregroundColor(.black)
                             Divider()
                                 .padding(.horizontal, 30)
                 
@@ -57,7 +63,8 @@ struct GetStartedView: View {
                 }
             }
         }
-        .padding(.bottom, 450)
+        .padding(.top, 10)
+        .padding(.bottom, 150)
         .background(Color.white)
         
         
