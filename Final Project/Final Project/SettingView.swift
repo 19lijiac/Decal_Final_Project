@@ -25,7 +25,10 @@ struct SettingView: View {
                         
                         Text("NAME").font(.system(size: 40))
                     }
-                }.frame(height:80)
+                }.frame(height:80).buttonStyle(PlainButtonStyle())
+                    .onTapGesture {
+                        navigationManager.goToProfileView()
+                    }
                 
                 Section("customization") {
                     Toggle(isOn: $isDarkMode, label: {

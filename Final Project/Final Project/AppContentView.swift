@@ -24,6 +24,9 @@ struct AppContentView: View {
                     } else if navigationManager.currentView == .settingView {
                         SettingView(navigationManager: navigationManager, isDarkMode: $isDarkMode)
                     }
+            else if navigationManager.currentView == .profileView {
+                       ProfileView(navigationManager: navigationManager)
+                    }
                 }
     }
 }

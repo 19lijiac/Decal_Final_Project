@@ -14,6 +14,9 @@ import CoreLocation
 final class LocationTracker: NSObject, ObservableObject {
     @Published var location: CLLocation?
     @Published var centerOnUser: Bool = true
+    @Published var cityName: String = ""
+    @Published var stateName: String = ""
+    @Published var countryName: String = ""
     public var routeCoordinates : [CLLocationCoordinate2D] = []
     public var coordinatesCount : Int = 0
     
@@ -31,6 +34,14 @@ final class LocationTracker: NSObject, ObservableObject {
             locationManager.delegate = self
         }
     
+    func startUpdatingLocation() {
+        locationManager.startUpdatingLocation()
+    }
+        
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+    }
+    
 }
 
 extension LocationTracker: CLLocationManagerDelegate {
@@ -39,6 +50,21 @@ extension LocationTracker: CLLocationManagerDelegate {
             DispatchQueue.main.async {
                 
                 if let lastLocation = self.routeCoordinates.last, lastLocation.latitude != location.coordinate.latitude && lastLocation.longitude != location.coordinate.longitude   {
+                    let geoCoder = CLGeocoder()
+                    
+                    geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                        if let placemark = placemarks?.first {
+                            self.cityName = placemark.locality ?? "N/A"
+                            self.stateName = placemark.administrativeArea ?? "N/A"
+                            self.countryName = placemark.country ?? "N/A"
+                        } else {
+                            self.cityName = "N/A"
+                            self.stateName = "N/A"
+                            self.countryName = "N/A"
+                        }
+                    }
+                    
+                    
                             // Append `location` to `routeCoordinates` only when it is not equal to the last element
                     self.routeCoordinates.append(location.coordinate)
                         } else if self.routeCoordinates.isEmpty {

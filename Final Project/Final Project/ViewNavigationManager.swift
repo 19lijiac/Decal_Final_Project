@@ -16,6 +16,7 @@ class ViewNavigationManager: ObservableObject {
         case mainFrameView
         case getStartedView
         case settingView
+        case profileView
     }
     
     @Published var currentView: NavigationState = .contentView
@@ -41,5 +42,7 @@ class ViewNavigationManager: ObservableObject {
         currentView = .settingView
     }
     
-
+    func goToProfileView() {
+        currentView = .profileView
+    }
 }

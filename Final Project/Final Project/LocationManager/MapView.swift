@@ -15,6 +15,9 @@ struct MapView: UIViewRepresentable {
     @Binding var isDarkMode: Bool
     
     
+    
+    
+    
     func makeUIView(context: Context) -> MKMapView {
         
         let map = MKMapView()
@@ -42,7 +45,7 @@ struct MapView: UIViewRepresentable {
         
         if centerOnUser, let userLocation = uiView.userLocation.location {
                     let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-                    uiView.setRegion(region, animated: true)
+                    uiView.setRegion(region, animated: false)
             DispatchQueue.main.async {
                         centerOnUser = false
                     }
