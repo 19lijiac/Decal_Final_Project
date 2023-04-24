@@ -61,7 +61,7 @@ struct MainFrameView: View {
                         .foregroundColor(.black).background(.white).clipShape(Circle())
                 }
                 
-                Button(action: {print("add friend pressed")}) {
+                Button(action: navigationManager.goToAddFriendView) {
                     Image(systemName: "person.fill.badge.plus").frame(width:30, height:30)
                         .foregroundColor(.black).background(.white).clipShape(Circle())
                 }

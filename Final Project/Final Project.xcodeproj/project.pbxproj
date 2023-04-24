@@ -24,7 +24,6 @@
 		58446D3629EFCA16006EF0DA /* Final_ProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D3529EFCA16006EF0DA /* Final_ProjectUITestsLaunchTests.swift */; };
 		58446D4529EFCEBF006EF0DA /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4429EFCEBF006EF0DA /* LogInView.swift */; };
 		58446D4729EFD00A006EF0DA /* MainFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4629EFD00A006EF0DA /* MainFrameView.swift */; };
-		58446D4929EFD090006EF0DA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4829EFD090006EF0DA /* SearchView.swift */; };
 		58446D4B29EFD0DB006EF0DA /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4A29EFD0DB006EF0DA /* AddFriendView.swift */; };
 		58446D4D29EFD127006EF0DA /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D4C29EFD127006EF0DA /* SettingView.swift */; };
 		58446D5329EFD2FE006EF0DA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446D5229EFD2FE006EF0DA /* ProfileView.swift */; };
@@ -69,7 +68,6 @@
 		58446D3529EFCA16006EF0DA /* Final_ProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Final_ProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		58446D4429EFCEBF006EF0DA /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		58446D4629EFD00A006EF0DA /* MainFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFrameView.swift; sourceTree = "<group>"; };
-		58446D4829EFD090006EF0DA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		58446D4A29EFD0DB006EF0DA /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		58446D4C29EFD127006EF0DA /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		58446D5229EFD2FE006EF0DA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				58446D5229EFD2FE006EF0DA /* ProfileView.swift */,
 				58446D4A29EFD0DB006EF0DA /* AddFriendView.swift */,
 				58446D4C29EFD127006EF0DA /* SettingView.swift */,
-				58446D4829EFD090006EF0DA /* SearchView.swift */,
 				58446D1C29EFCA16006EF0DA /* Assets.xcassets */,
 				58446D1E29EFCA16006EF0DA /* Preview Content */,
 				01F099E129F635B0007988E1 /* AppState.swift */,
@@ -319,7 +316,6 @@
 			files = (
 				018EBDB329F0974100DF72E4 /* AppContentView.swift in Sources */,
 				58446D4B29EFD0DB006EF0DA /* AddFriendView.swift in Sources */,
-				58446D4929EFD090006EF0DA /* SearchView.swift in Sources */,
 				01F8C12D29F10F1D00E91E9A /* MapView.swift in Sources */,
 				58446D5329EFD2FE006EF0DA /* ProfileView.swift in Sources */,
 				58446D1B29EFCA15006EF0DA /* ContentView.swift in Sources */,
