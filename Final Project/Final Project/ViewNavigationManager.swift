@@ -18,6 +18,7 @@ class ViewNavigationManager: ObservableObject {
         case settingView
         case profileView
         case addFriendView
+        case addStoryView
     }
     
     @Published var currentView: NavigationState = .contentView
@@ -49,5 +50,9 @@ class ViewNavigationManager: ObservableObject {
     
     func goToAddFriendView() {
         currentView = .addFriendView
+    }
+    
+    func goToAddStoryView() {
+        currentView = .addStoryView
     }
 }

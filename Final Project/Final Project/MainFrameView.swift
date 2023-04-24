@@ -12,7 +12,7 @@ import MapKit
 struct MainFrameView: View {
     @ObservedObject var locationTracker = LocationTracker()
     @ObservedObject var navigationManager: ViewNavigationManager
-    
+    @StateObject private var noteStore = NoteStore()
     @State private var showingBottomSheet = false
     @State private var polylinePoints: [CLLocationCoordinate2D] = []
     @Binding var isDarkMode : Bool
@@ -73,7 +73,7 @@ struct MainFrameView: View {
                         .foregroundColor(.red)
                 }
                 
-                Button(action: {print("add stories pressed")}) {
+                Button(action:navigationManager.goToAddStoryView) {
                     Image(systemName: "pencil").frame(width:30, height:30)
                         .foregroundColor(.yellow)
                 }
