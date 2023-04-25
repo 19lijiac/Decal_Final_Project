@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @ObservedObject var navigationManager: ViewNavigationManager
-    @Binding var isDarkMode: Bool
+    @ObservedObject var locationTracker : LocationTracker
     
     //TODO: instantiate data model
     
@@ -31,7 +31,7 @@ struct SettingView: View {
                     }
                 
                 Section("customization") {
-                    Toggle(isOn: $isDarkMode, label: {
+                    Toggle(isOn: $locationTracker.isDarkMode, label: {
                         Text("Dark Mode")
                     })
                 }

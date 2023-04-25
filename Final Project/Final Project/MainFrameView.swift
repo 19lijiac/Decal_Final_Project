@@ -14,8 +14,6 @@ struct MainFrameView: View {
     @ObservedObject var navigationManager: ViewNavigationManager
     @StateObject private var noteStore = NoteStore()
     @State private var showingBottomSheet = false
-    @Binding var isDarkMode : Bool
-    //@State private var polylinePoints: [CLLocationCoordinate2D] = []
     
     
     
@@ -31,7 +29,8 @@ struct MainFrameView: View {
             /*
             MapView(polylinePoints: $locationTracker.routeCoordinates, centerOnUser: $locationTracker.centerOnUser).ignoresSafeArea()
              */
-            MapView(centerOnUser: $locationTracker.centerOnUser, isDarkMode: $isDarkMode, viewModel: locationTracker).ignoresSafeArea()
+            
+            MapView(viewModel: locationTracker).ignoresSafeArea()
             
             
             
@@ -80,17 +79,15 @@ struct MainFrameView: View {
                         .foregroundColor(.blue)
                 }
                 
-                Button(action: {
-                                        locationTracker.centerOnUser = true
-                                    }) {
-                                        Image(systemName: "location.fill")
-                                            .font(.system(size: 24))
-                                            .foregroundColor(.white)
-                                            .padding()
-                                            .background(Color.blue)
-                                            .clipShape(Circle())
-                                            .padding(.trailing)
-                                    }
+                Button(action: {locationTracker.centerOnUser = true}) {
+                    Image(systemName: "location.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .clipShape(Circle())
+                        .padding(.trailing)
+                }
             }.padding(.leading, 275)
              
         }.sheet(isPresented: $showingBottomSheet) {

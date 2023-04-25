@@ -11,8 +11,8 @@ import MapKit
 
 struct MapView: UIViewRepresentable {
     //@Binding var polylinePoints: [CLLocationCoordinate2D]
-    @Binding var centerOnUser: Bool
-    @Binding var isDarkMode: Bool
+    //@Binding var centerOnUser: Bool
+    //@Binding var isDarkMode: Bool
     @ObservedObject var viewModel: LocationTracker
     
     
@@ -41,14 +41,14 @@ struct MapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIViewType, context:
                       UIViewRepresentableContext<MapView>){
-        uiView.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
+        uiView.overrideUserInterfaceStyle = viewModel.isDarkMode ? .dark : .light
             
         
-        if centerOnUser, let userLocation = viewModel.location {
+        if viewModel.centerOnUser, let userLocation = viewModel.location {
                     let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
                     uiView.setRegion(region, animated: false)
             DispatchQueue.main.async {
-                        centerOnUser = false
+                viewModel.centerOnUser = false
                     }
                 }
         if let polyline = viewModel.polyline {

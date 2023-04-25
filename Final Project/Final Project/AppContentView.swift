@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AppContentView: View {
     @ObservedObject var navigationManager = ViewNavigationManager()
-    @State private var isDarkMode = false
     @StateObject var locationTracker = LocationTracker()
     
     var body: some View {
@@ -19,11 +18,11 @@ struct AppContentView: View {
                     } else if navigationManager.currentView == .loginView {
                         LogInView(navigationManager: navigationManager)
                     } else if navigationManager.currentView == .mainFrameView {
-                        MainFrameView(locationTracker: locationTracker, navigationManager: navigationManager, isDarkMode: $isDarkMode)
+                        MainFrameView(locationTracker: locationTracker, navigationManager: navigationManager)
                     } else if navigationManager.currentView == .getStartedView {
                         GetStartedView(navigationManager: navigationManager)
                     } else if navigationManager.currentView == .settingView {
-                        SettingView(navigationManager: navigationManager, isDarkMode: $isDarkMode)
+                        SettingView(navigationManager: navigationManager, locationTracker: locationTracker)
                     } else if navigationManager.currentView == .profileView {
                         ProfileView(locationTracker: locationTracker, navigationManager: navigationManager)
                     } else if navigationManager.currentView == .addFriendView {

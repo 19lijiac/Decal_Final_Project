@@ -25,18 +25,19 @@ final class Coordinator: NSObject, MKMapViewDelegate {
             }
             return MKOverlayRenderer(overlay: overlay)
         }
+    
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         if !initialRegionSet {
             setInitialRegion(for: mapView)
             initialRegionSet = true
-        } else if control.centerOnUser {
+        } else if control.viewModel.centerOnUser {
             let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
             mapView.setRegion(region, animated: false)
         }
     }
     @objc func didDragMap(_ gestureRecognizer: UIGestureRecognizer) {
                 if gestureRecognizer.state == .began {
-                    control.centerOnUser = false
+                    control.viewModel.centerOnUser = false
                 }
             }
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
