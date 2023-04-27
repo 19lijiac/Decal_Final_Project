@@ -82,6 +82,8 @@ struct LogInView: View {
                         isUserNotFound = true
                     case .wrongPassword:
                         isUserNotFound = true
+                    case .invalidEmail:
+                        isUserNotFound = true
                     default:
                         print(error.localizedDescription)
                     }
