@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 struct LogInView: View {
     @State var email = ""
     @State var password = ""
+    @State private var isUserNotFound = false
     @ObservedObject var navigationManager: ViewNavigationManager
     @FocusState private var isTextFieldFocused: Bool
+    
+    
     
     var body: some View {
         VStack {
@@ -45,7 +52,7 @@ struct LogInView: View {
                 .padding(.top, 40)
             
             
-            Button(action: navigationManager.goToMainFrameView) {
+            Button(action: login) {
                 ZStack(alignment: .center){
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.black)
@@ -56,12 +63,36 @@ struct LogInView: View {
                         .foregroundColor(.white)
                         .tracking(0.72)
                 }
-            }
+            }.alert("User Not Found", isPresented: $isUserNotFound, actions: {Button ("OK", role: .cancel) {}},
+                    message:{Text("Please try again")})
         }
         .padding(.top, 10)
         .padding(.bottom, 150)
         .background(Color.white)
-        
+    }
+    
+    
+    //handles Log In button
+    func login() {
+        Auth.auth().signIn(withEmail: self.email, password: self.password) {authResult, error in
+            if let error = error {
+                if let errorCode = AuthErrorCode.Code(rawValue: error._code) {
+                    switch errorCode {
+                    case .userNotFound:
+                        isUserNotFound = true
+                    case .wrongPassword:
+                        isUserNotFound = true
+                    default:
+                        print(error.localizedDescription)
+                    }
+                }
+                return
+            }
+            
+            if !isUserNotFound {
+                navigationManager.goToMainFrameView()
+            }
+        }
         
         
     }

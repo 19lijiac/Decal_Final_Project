@@ -23,6 +23,10 @@ final class LocationTracker: NSObject, ObservableObject {
     public var routeCoordinates : [CLLocationCoordinate2D] = []
     public var coordinatesCount : Int = 0
     
+    //handles REVERSE_GEOCODING request frequency
+    let delayTime = 1.0
+    var lastRequestTime: Date?
+    
     
      
     
@@ -55,6 +59,14 @@ extension LocationTracker: CLLocationManagerDelegate {
                     let geoCoder = CLGeocoder()
                     
                     geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                        if let lastRequestTime = self.lastRequestTime,
+                           Date().timeIntervalSince(lastRequestTime) < self.delayTime {
+                               return
+                        }
+                        
+                        
+                        
+                        
                         if let placemark = placemarks?.first {
                             self.cityName = placemark.locality ?? "N/A"
                             self.stateName = placemark.administrativeArea ?? "N/A"
@@ -64,6 +76,8 @@ extension LocationTracker: CLLocationManagerDelegate {
                             self.stateName = "N/A"
                             self.countryName = "N/A"
                         }
+                        
+                        self.lastRequestTime = Date()
                     }
                     
                     
