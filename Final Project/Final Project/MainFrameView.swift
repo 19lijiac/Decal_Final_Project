@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import Firebase
 
 
 struct MainFrameView: View {

@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseDatabase
 
 struct AddNoteView: View {
     @State private var noteText: String = ""
@@ -48,7 +50,7 @@ struct AddNoteView: View {
             }
             .navigationBarTitle("Add Note", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-//                submitNote()
+                submitNote()
                 print("Submitted")
             }) {
                 Text("Submit")
@@ -65,6 +67,32 @@ struct AddNoteView: View {
 ////
 //
 //    }
+    
+    func submitNote() {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        let userRef = FirebaseManager.shared.databaseRef.child(currentUser.uid)
+        let currentUserRef = userRef.child("notes")
+        
+        
+        
+        let note = Note(text: noteText, uid: currentUser.uid)
+        let noteDictionary = note.toDictionary()
+        
+        currentUserRef.setValue(noteDictionary) { (error, ref) in
+            if let error = error {
+                print("Error saving user data: \(error.localizedDescription)")
+            } else {
+                print("User data saved successfully")
+                navigationManager.goToMainFrameView()
+            }
+        }
+    }
+    
+    
+    
     var backButton: some View {
         Button(action: navigationManager.goToMainFrameView) {
             HStack (spacing: 10) {
