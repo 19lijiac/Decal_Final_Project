@@ -7,33 +7,46 @@
 
 import SwiftUI
 
+/*
 struct User: Identifiable {
     var id: Int
     var name: String
 }
+ */
 
 struct FriendProfileView: View {
-    var friend: User
+    var friend: String
+    @State private var sent = false
     
     var body: some View {
         VStack {
-            Text(friend.name)
+            Text(friend)
                 .font(.largeTitle)
             Spacer()
         }
         .padding()
         .navigationBarTitle("Friend Profile", displayMode: .inline)
+        .navigationBarItems(trailing:
+                    Button(action: {
+                        sent = !sent
+                        FirebaseManager.shared.addUser(addUserId: friend)
+                    }, label: {
+                        Image(systemName: "plus.circle")
+                    })
+                    .padding(.trailing, 8)
+                    .foregroundColor(.blue)
+                )
+                .alert(isPresented: $sent) {
+                    Alert(title: Text("Friend request sent"), message: Text("You've sent a friend request to \(friend)"), dismissButton: .default(Text("OK")))
+                }
     }
 }
 
 struct AddFriendView: View {
     @State private var searchQuery: String = ""
     @ObservedObject var navigationManager: ViewNavigationManager
-    private let friends = [
-        User(id: 1, name: "Bob"),
-        User(id: 2, name: "Alice"),
-        User(id: 3, name: "Charlie")
-    ]
+    @State private var showPopup = false
+    private let friends = FirebaseManager.shared.allUserList
     
     var body: some View {
         NavigationView {
@@ -59,23 +72,27 @@ struct AddFriendView: View {
                             .padding(.horizontal, 20)
 
                 List {
-                    ForEach(friends) { friend in
+                    ForEach(friends, id: \.self) { friend in
                         NavigationLink(destination: FriendProfileView(friend: friend)) {
-                            HStack {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color(.systemBackground))
-                                    .overlay(
-                                        Image(systemName: "person.crop.circle")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                    )
-                                    .frame(width: 58, height: 52)
-                                Text(friend.name)
-                                    .font(.system(size: 20))
-                                    .foregroundColor(Color(.label))
-                                Spacer()
+                            ZStack{
+                                
+                                HStack {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(Color(.systemBackground))
+                                        .overlay(
+                                            Image(systemName: "person.crop.circle")
+                                                .resizable()
+                                                .frame(width: 50, height: 50)
+                                        )
+                                        .frame(width: 58, height: 52)
+                                    Text(friend)
+                                        .font(.system(size: 20))
+                                        .foregroundColor(Color(.label))
+                                    Spacer()
+                                }
+                                .padding(.vertical, 8)
+                                .allowsHitTesting(false)
                             }
-                            .padding(.vertical, 8)
                         }
                     }
                 }
@@ -98,3 +115,4 @@ struct AddFriendView: View {
         }
     }
 }
+

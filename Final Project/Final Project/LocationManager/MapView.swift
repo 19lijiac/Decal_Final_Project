@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 import MapKit
+import Firebase
+import FirebaseDatabase
 
 struct MapView: UIViewRepresentable {
     //@Binding var polylinePoints: [CLLocationCoordinate2D]
@@ -16,11 +18,7 @@ struct MapView: UIViewRepresentable {
     @ObservedObject var viewModel: LocationTracker
     
     
-    
-    
-    
     func makeUIView(context: Context) -> MKMapView {
-        
         let map = MKMapView()
         map.showsUserLocation = true
         map.delegate = context.coordinator
@@ -42,7 +40,7 @@ struct MapView: UIViewRepresentable {
     func updateUIView(_ uiView: UIViewType, context:
                       UIViewRepresentableContext<MapView>){
         uiView.overrideUserInterfaceStyle = viewModel.isDarkMode ? .dark : .light
-            
+        
         
         if viewModel.centerOnUser, let userLocation = viewModel.location {
                     let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
@@ -50,17 +48,24 @@ struct MapView: UIViewRepresentable {
             DispatchQueue.main.async {
                 viewModel.centerOnUser = false
                     }
-                }
+        }
+        
         if let polyline = viewModel.polyline {
-                    uiView.removeOverlays(uiView.overlays)
-                    uiView.addOverlay(polyline)
-                }
+            uiView.removeOverlays(uiView.overlays)
+            uiView.addOverlay(polyline)
+        }
         
         for pin in FirebaseManager.shared.noteLocationDictionary {
             uiView.addAnnotation(pin)
         }
-                    
+        
+        //placeholder
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 999, longitude: 999)
+        
+        for friend in FirebaseManager.shared.friendList {
+            uiView.addAnnotation(FirebaseManager.shared.friendAnnotation[friend] ?? annotation)
+        }
     }
-    
 }
 

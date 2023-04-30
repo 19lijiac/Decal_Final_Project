@@ -39,6 +39,7 @@ class ViewNavigationManager: ObservableObject {
     }
     
     func goToMainFrameView() {
+        //FirebaseManager.shared.readFriends()
         FirebaseManager.shared.readPins()
         currentView = .mainFrameView
     }
@@ -52,6 +53,7 @@ class ViewNavigationManager: ObservableObject {
     }
     
     func goToAddFriendView() {
+        FirebaseManager.shared.readUserList()
         currentView = .addFriendView
     }
     

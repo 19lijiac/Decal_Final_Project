@@ -24,7 +24,7 @@ final class LocationTracker: NSObject, ObservableObject {
     public var coordinatesCount : Int = 0
     
     //handles REVERSE_GEOCODING request frequency
-    let delayTime = 1.0
+    let delayTime = 5.0
     var lastRequestTime: Date?
     
     
@@ -91,6 +91,10 @@ extension LocationTracker: CLLocationManagerDelegate {
                 self.location = location
                 self.coordinatesCount = self.routeCoordinates.count
                 self.polyline = MKPolyline(coordinates: self.routeCoordinates, count: self.coordinatesCount)
+                
+                if FirebaseManager.shared.currentUser != nil {
+                    FirebaseManager.shared.updateUserStatus(locationTracker: self)
+                }
             }
         /*
         if centerOnUser {

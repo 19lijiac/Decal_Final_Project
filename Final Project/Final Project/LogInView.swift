@@ -43,7 +43,7 @@ struct LogInView: View {
                                 .padding(.horizontal, 30)
                 
                 Button(action: navigationManager.goToGetStartedView) {
-                    Text("Doesn't have an account yet?")
+                    Text("Don't have an account yet?")
                 }.font(.caption2)
                 .tracking(0.40)
                 .foregroundColor(.blue)
