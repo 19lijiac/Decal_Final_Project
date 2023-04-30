@@ -55,6 +55,11 @@ struct MapView: UIViewRepresentable {
                     uiView.removeOverlays(uiView.overlays)
                     uiView.addOverlay(polyline)
                 }
+        
+        for pin in FirebaseManager.shared.noteLocationDictionary {
+            uiView.addAnnotation(pin)
+        }
+                    
     }
     
 }

@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import Firebase
+import FirebaseDatabase
 
 // Define a class to manage the state and navigation
 class ViewNavigationManager: ObservableObject {
@@ -37,6 +39,7 @@ class ViewNavigationManager: ObservableObject {
     }
     
     func goToMainFrameView() {
+        FirebaseManager.shared.readPins()
         currentView = .mainFrameView
     }
     

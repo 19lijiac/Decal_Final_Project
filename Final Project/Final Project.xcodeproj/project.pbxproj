@@ -177,6 +177,7 @@
 		01F099DE29F5E88F007988E1 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				58446D5A29F67AC4006EF0DA /* Note.swift */,
 				01F099DF29F5E8C9007988E1 /* FriendsModel.swift */,
 			);
 			path = DataModel;
@@ -229,7 +230,6 @@
 				58446D4A29EFD0DB006EF0DA /* AddFriendView.swift */,
 				58446D4C29EFD127006EF0DA /* SettingView.swift */,
 				58446D5429F676E4006EF0DA /* AddNoteView.swift */,
-				58446D5A29F67AC4006EF0DA /* Note.swift */,
 				58446D5C29F67B1F006EF0DA /* ObservableObject.swift */,
 				58446D5629F677D2006EF0DA /* UIImagePickerController.swift */,
 				58446D1C29EFCA16006EF0DA /* Assets.xcassets */,

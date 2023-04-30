@@ -28,7 +28,7 @@ struct AppContentView: View {
                     } else if navigationManager.currentView == .addFriendView {
                         AddFriendView(navigationManager: navigationManager)
                     } else if navigationManager.currentView == .addStoryView {
-                        AddNoteView(navigationManager:navigationManager)
+                        AddNoteView(navigationManager:navigationManager, locationTracker: locationTracker)
                     }
                 }
     }

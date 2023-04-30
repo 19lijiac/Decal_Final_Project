@@ -27,6 +27,7 @@ struct SettingView: View {
                     }
                 }.frame(height:80).buttonStyle(PlainButtonStyle())
                     .onTapGesture {
+                        FirebaseManager.shared.readRecentNotes()
                         navigationManager.goToProfileView()
                     }
                 

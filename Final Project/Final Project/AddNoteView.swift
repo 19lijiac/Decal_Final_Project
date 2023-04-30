@@ -8,13 +8,16 @@
 import SwiftUI
 import Firebase
 import FirebaseDatabase
+import CoreLocation
 
 struct AddNoteView: View {
     @State private var noteText: String = ""
     @State private var selectedImage: UIImage?
     @State private var isImagePickerPresented: Bool = false
     @ObservedObject var navigationManager: ViewNavigationManager
-    @EnvironmentObject var noteStore: NoteStore
+    @ObservedObject var locationTracker : LocationTracker
+    //@EnvironmentObject var noteStore: NoteStore
+    
 
     var body: some View {
         NavigationView {
@@ -69,26 +72,8 @@ struct AddNoteView: View {
 //    }
     
     func submitNote() {
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        
-        let userRef = FirebaseManager.shared.databaseRef.child(currentUser.uid)
-        let currentUserRef = userRef.child("notes")
-        
-        
-        
-        let note = Note(text: noteText, uid: currentUser.uid)
-        let noteDictionary = note.toDictionary()
-        
-        currentUserRef.setValue(noteDictionary) { (error, ref) in
-            if let error = error {
-                print("Error saving user data: \(error.localizedDescription)")
-            } else {
-                print("User data saved successfully")
-                navigationManager.goToMainFrameView()
-            }
-        }
+        FirebaseManager.shared.addNoteToDatabase(noteText: noteText, locationTracker: locationTracker)
+        navigationManager.goToMainFrameView()
     }
     
     

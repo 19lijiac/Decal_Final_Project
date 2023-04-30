@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseDatabase
+
 
 struct ProfileView: View {
     //@ObservedObject var locationTracker = LocationTracker()
     @ObservedObject var locationTracker : LocationTracker
     @ObservedObject var navigationManager: ViewNavigationManager
+    
     
     var body: some View {
         NavigationView{
@@ -52,6 +56,21 @@ struct ProfileView: View {
 
                     Rectangle()
                     .frame(width: 180, height: 1)
+                    
+                    
+                    //TODO: show recent stories
+                    LazyVStack() {
+                        ForEach(FirebaseManager.shared.noteDictionary, id: \.self) {dictionary in
+                            let text = dictionary["text"] ?? "error!"
+                            let time = dictionary["time"] ?? "error!"
+                            HStack {
+                                Text("\(time)")
+                                Text("\(text)")
+                            }
+                            
+                        }
+                    }
+                    
                 }
                 .padding(.top, 40)
                 
@@ -72,7 +91,6 @@ struct ProfileView: View {
             }
         }
     }
-     
 }
 
 

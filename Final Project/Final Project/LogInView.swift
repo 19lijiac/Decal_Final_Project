@@ -92,6 +92,10 @@ struct LogInView: View {
             }
             
             if !isUserNotFound {
+                guard let currentUser = Auth.auth().currentUser else {
+                    return
+                }
+                FirebaseManager.shared.currentUser = currentUser
                 navigationManager.goToMainFrameView()
             }
         }
