@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingView: View {
     @ObservedObject var navigationManager: ViewNavigationManager
     @ObservedObject var locationTracker : LocationTracker
-    
+    @State private var userName: String = ""
     //TODO: instantiate data model
     
     
@@ -23,7 +23,15 @@ struct SettingView: View {
                         
                         Image(systemName: "person.crop.circle").resizable().frame(width: 50, height: 50)
                         
-                        Text("NAME").font(.system(size: 40))
+                        Text(userName.isEmpty ? "NAME" : userName)
+                                                    .font(.system(size: 40))
+                                                    .onAppear {
+                                                        FirebaseManager.shared.fetchUserName { fetchedUserName in
+                                                            if let fetchedUserName = fetchedUserName {
+                                                                self.userName = fetchedUserName
+                                                            }
+                                                        }
+                                                    }
                     }
                 }.frame(height:80).buttonStyle(PlainButtonStyle())
                     .onTapGesture {

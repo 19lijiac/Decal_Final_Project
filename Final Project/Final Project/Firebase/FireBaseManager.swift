@@ -259,5 +259,46 @@ class FirebaseManager {
         
         
     }
+    
+    func storeUserName(username: String, completion: @escaping () -> Void) {
+        let userRef = databaseRef.child("users").child(currentUser!.uid)
+        userRef.updateChildValues(["username": username]) { (error, ref) in
+            if let error = error {
+                print("Error saving user name: \(error.localizedDescription)")
+            } else {
+                print("User name saved successfully")
+                completion()
+            }
+        }
+    }
+
+
+    func fetchUserName(completion: @escaping (String?) -> Void) {
+        guard let userId = currentUser?.uid else { return }
+        let userRef = databaseRef.child("users").child(userId)
+
+        userRef.observeSingleEvent(of: .value, with: { snapshot in
+            if let userName = snapshot.childSnapshot(forPath: "username").value as? String { // Change "name" to "username"
+                completion(userName)
+            } else {
+                print("User not found.")
+                completion(nil)
+            }
+        }) { error in
+            print("Error fetching user name: \(error.localizedDescription)")
+            completion(nil)
+        }
+    }
+
+
+    func updateUserName(newUserName: String, completion: @escaping () -> Void) {
+        print("update user name")
+        if !newUserName.isEmpty {
+            storeUserName(username: newUserName) {
+                completion()
+            }
+        }
+    }
+
      
 }
