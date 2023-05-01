@@ -64,7 +64,22 @@ struct MapView: UIViewRepresentable {
         annotation.coordinate = CLLocationCoordinate2D(latitude: 999, longitude: 999)
         
         for friend in FirebaseManager.shared.friendList {
-            uiView.addAnnotation(FirebaseManager.shared.friendAnnotation[friend] ?? annotation)
+            let friendAnnotation = FirebaseManager.shared.friendAnnotation[friend] ?? annotation
+            
+            if !FirebaseManager.shared.checkFriendAnnot.contains(friend) {
+                uiView.addAnnotation(friendAnnotation)
+                FirebaseManager.shared.checkFriendAnnot.insert(friend)
+            } else {
+                if let oldAnnotation = uiView.annotations.first(where: { $0.title == friend }) {
+                    uiView.removeAnnotation(oldAnnotation)
+                }
+
+                let newAnnotation = MKPointAnnotation()
+                newAnnotation.coordinate = CLLocationCoordinate2D(latitude: friendAnnotation.coordinate.latitude, longitude: friendAnnotation.coordinate.longitude)
+                newAnnotation.title = friend
+                FirebaseManager.shared.friendAnnotation[friend] = newAnnotation
+                uiView.addAnnotation(newAnnotation)
+            }
         }
     }
 }

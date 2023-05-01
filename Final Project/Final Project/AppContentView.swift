@@ -49,7 +49,7 @@ struct AppContentView: View {
                 FirebaseManager.shared.readFriends()
 
                 // Sleep for some interval before running the function again
-                sleep(5)
+                sleep(1)
                 //test
                 print("run")
             }
