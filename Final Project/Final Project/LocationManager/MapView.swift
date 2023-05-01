@@ -16,6 +16,7 @@ struct MapView: UIViewRepresentable {
     //@Binding var centerOnUser: Bool
     //@Binding var isDarkMode: Bool
     @ObservedObject var viewModel: LocationTracker
+    //@Binding var showingPolyline: Bool
     
     
     func makeUIView(context: Context) -> MKMapView {
@@ -50,10 +51,15 @@ struct MapView: UIViewRepresentable {
                     }
         }
         
-        if let polyline = viewModel.polyline {
+        if viewModel.showingPolyline {
+            if let polyline = viewModel.polyline {
+                uiView.removeOverlays(uiView.overlays)
+                uiView.addOverlay(polyline)
+            }
+        } else {
             uiView.removeOverlays(uiView.overlays)
-            uiView.addOverlay(polyline)
         }
+        
         
         for pin in FirebaseManager.shared.noteLocationDictionary {
             uiView.addAnnotation(pin)
