@@ -19,7 +19,7 @@ class FirebaseManager {
     var noteLocationDictionary: [MKPointAnnotation] = []
     var allUserList: [String] = []
     var friendList: [String] = []
-    var friendAnnotation: [String: MKAnnotation] = [:]
+    var friendAnnotation: [String: CustomAnnotation] = [:]
     var checkFriendAnnot: Set<String> = Set<String>()
     
     
@@ -246,7 +246,7 @@ class FirebaseManager {
                     let latitude = snapshot.childSnapshot(forPath: "latitude").value as? Double ?? 999
                     let longitude = snapshot.childSnapshot(forPath: "longitude").value as? Double ?? 999
                     let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                    let annotation = CustomAnnotation(coordinate: coordinate, title: "\(friend)")
+                    let annotation = CustomAnnotation(coordinate: coordinate, identifier: "\(friend)")
                     self.friendAnnotation[friend] = annotation
                 }) { error in
                     print("Error: \(error.localizedDescription)")
@@ -254,10 +254,7 @@ class FirebaseManager {
             }
         }) { error in
             print("Error: \(error.localizedDescription)")
-            
         }
-        
-        
     }
     
     func storeUserName(username: String, completion: @escaping () -> Void) {

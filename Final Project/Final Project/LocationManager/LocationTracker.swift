@@ -17,7 +17,7 @@ final class LocationTracker: NSObject, ObservableObject {
     @Published var polyline: MKPolyline?
     @Published var isDarkMode: Bool = false
     @Published var centerOnUser: Bool = true
-    @Published var showingPolyline: Bool = false
+    @Published var showingPolyline: Bool = true
     @Published var cityName: String = ""
     @Published var stateName: String = ""
     @Published var countryName: String = ""

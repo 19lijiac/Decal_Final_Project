@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		018BADD329FF7DD000FC8F38 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018BADD229FF7DD000FC8F38 /* CustomAnnotation.swift */; };
 		018EBDB329F0974100DF72E4 /* AppContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018EBDB229F0974000DF72E4 /* AppContentView.swift */; };
 		018EBDB729F09D6F00DF72E4 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018EBDB629F09D6F00DF72E4 /* LocationTracker.swift */; };
 		01F099DB29F5D00A007988E1 /* ViewNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DA29F5D00A007988E1 /* ViewNavigationManager.swift */; };
 		01F099DD29F5E2EC007988E1 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DC29F5E2EC007988E1 /* GetStartedView.swift */; };
-		01F099E029F5E8C9007988E1 /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099DF29F5E8C9007988E1 /* FriendsModel.swift */; };
 		01F099E229F635B0007988E1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F099E129F635B0007988E1 /* AppState.swift */; };
 		01F099EC29FA365E007988E1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 01F099EB29FA365E007988E1 /* FirebaseAnalytics */; };
 		01F099EE29FA365E007988E1 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 01F099ED29FA365E007988E1 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -80,12 +80,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		018BADD229FF7DD000FC8F38 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		018EBDB229F0974000DF72E4 /* AppContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentView.swift; sourceTree = "<group>"; };
 		018EBDB629F09D6F00DF72E4 /* LocationTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
 		018EBDB829F0CE9000DF72E4 /* Final-Project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Final-Project-Info.plist"; sourceTree = SOURCE_ROOT; };
 		01F099DA29F5D00A007988E1 /* ViewNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNavigationManager.swift; sourceTree = "<group>"; };
 		01F099DC29F5E2EC007988E1 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
-		01F099DF29F5E8C9007988E1 /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
 		01F099E129F635B0007988E1 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		01F09A2629FB4ED2007988E1 /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
 		01F8C12C29F10F1D00E91E9A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -177,8 +177,8 @@
 		01F099DE29F5E88F007988E1 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				018BADD229FF7DD000FC8F38 /* CustomAnnotation.swift */,
 				58446D5A29F67AC4006EF0DA /* Note.swift */,
-				01F099DF29F5E8C9007988E1 /* FriendsModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -434,12 +434,12 @@
 				01F09A2729FB4ED2007988E1 /* FireBaseManager.swift in Sources */,
 				58446D5329EFD2FE006EF0DA /* ProfileView.swift in Sources */,
 				58446D5B29F67AC4006EF0DA /* Note.swift in Sources */,
+				018BADD329FF7DD000FC8F38 /* CustomAnnotation.swift in Sources */,
 				58446D5729F677D2006EF0DA /* UIImagePickerController.swift in Sources */,
 				58446D1B29EFCA15006EF0DA /* ContentView.swift in Sources */,
 				58446D4D29EFD127006EF0DA /* SettingView.swift in Sources */,
 				01F099DB29F5D00A007988E1 /* ViewNavigationManager.swift in Sources */,
 				58446D4729EFD00A006EF0DA /* MainFrameView.swift in Sources */,
-				01F099E029F5E8C9007988E1 /* FriendsModel.swift in Sources */,
 				01F8C12F29F10FCB00E91E9A /* Coordinator.swift in Sources */,
 				01F099E229F635B0007988E1 /* AppState.swift in Sources */,
 				58446D5D29F67B1F006EF0DA /* ObservableObject.swift in Sources */,

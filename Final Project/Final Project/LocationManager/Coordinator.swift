@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 final class Coordinator: NSObject, MKMapViewDelegate {
     
@@ -50,5 +51,21 @@ final class Coordinator: NSObject, MKMapViewDelegate {
             }
         }
     
-    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let customAnnotation = annotation as? CustomAnnotation else {
+            return nil
+        }
+
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: customAnnotation.identifier)
+        if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: customAnnotation, reuseIdentifier: customAnnotation.identifier)
+            } else {
+                annotationView?.annotation = customAnnotation
+            }
+            
+            let customAnnotationView = CustomAnnotationView(annotation: customAnnotation)
+            annotationView?.addSubview(UIHostingController(rootView: customAnnotationView).view)
+            
+            return annotationView
+    }
 }

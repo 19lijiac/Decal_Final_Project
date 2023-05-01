@@ -66,27 +66,31 @@ struct MapView: UIViewRepresentable {
         }
         
         //placeholder
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 999, longitude: 999)
+        
         
         for friend in FirebaseManager.shared.friendList {
-            let friendAnnotation = FirebaseManager.shared.friendAnnotation[friend] ?? annotation
+            //print("update")
+            let annotCoordinate = CLLocationCoordinate2D(latitude: 999, longitude: 999)
+            let identifier = "\(friend)"
+            let friendAnnotation = FirebaseManager.shared.friendAnnotation[friend] ?? CustomAnnotation(coordinate: annotCoordinate, identifier: identifier)
+            friendAnnotation.coordinate = CLLocationCoordinate2D(latitude: friendAnnotation.coordinate.latitude, longitude: friendAnnotation.coordinate.longitude)
             
             if !FirebaseManager.shared.checkFriendAnnot.contains(friend) {
                 uiView.addAnnotation(friendAnnotation)
                 FirebaseManager.shared.checkFriendAnnot.insert(friend)
             } else {
                 if let oldAnnotation = uiView.annotations.first(where: { $0.title == friend }) {
+                    //print("delete oldaNNOTATION")
                     uiView.removeAnnotation(oldAnnotation)
                 }
-
-                let newAnnotation = MKPointAnnotation()
-                newAnnotation.coordinate = CLLocationCoordinate2D(latitude: friendAnnotation.coordinate.latitude, longitude: friendAnnotation.coordinate.longitude)
-                newAnnotation.title = friend
-                FirebaseManager.shared.friendAnnotation[friend] = newAnnotation
-                uiView.addAnnotation(newAnnotation)
+                FirebaseManager.shared.friendAnnotation[friend] = friendAnnotation
+                uiView.addAnnotation(friendAnnotation)
             }
         }
+        
+       
     }
+        
+    
 }
 

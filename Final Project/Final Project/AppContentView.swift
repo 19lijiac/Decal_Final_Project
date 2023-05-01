@@ -55,6 +55,7 @@ struct AppContentView: View {
             }
 
             // End the background task when the loop is finished
+            //FirebaseManager.shared.checkFriendAnnot = []
             UIApplication.shared.endBackgroundTask(backgroundTaskID)
             //test
             print("stop")
