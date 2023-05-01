@@ -15,7 +15,7 @@ struct MainFrameView: View {
     @ObservedObject var navigationManager: ViewNavigationManager
     @StateObject private var noteStore = NoteStore()
     @State private var showingBottomSheet = false
-    
+    //@State private var showingPolyline = false
     
     
 
@@ -30,8 +30,8 @@ struct MainFrameView: View {
             /*
             MapView(polylinePoints: $locationTracker.routeCoordinates, centerOnUser: $locationTracker.centerOnUser).ignoresSafeArea()
              */
-            
             MapView(viewModel: locationTracker).ignoresSafeArea()
+            
             
             
             
@@ -75,7 +75,7 @@ struct MainFrameView: View {
                         .foregroundColor(.yellow)
                 }
                 
-                Button(action: {print("saved paths pressed")}) {
+                Button(action: {locationTracker.showingPolyline.toggle()}) {
                     Image(systemName: "clock.arrow.circlepath").frame(width:30, height:30)
                         .foregroundColor(.blue)
                 }
