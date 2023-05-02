@@ -108,7 +108,9 @@ struct MapView: UIViewRepresentable {
                 print("add annotation")
                 print("this is :\(friendAnnotation.coordinate.latitude)")
                 //let annotationView = uiView.view(for: friendAnnotation)
-                uiView.addAnnotation(friendAnnotation)
+                DispatchQueue.main.async {
+                    uiView.addAnnotation(friendAnnotation)
+                }
                 FirebaseManager.shared.checkFriendAnnot.insert(friend)
             }
             
