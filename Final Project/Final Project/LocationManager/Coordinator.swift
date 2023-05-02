@@ -32,7 +32,7 @@ final class Coordinator: NSObject, MKMapViewDelegate {
             setInitialRegion(for: mapView)
             initialRegionSet = true
         } else if control.viewModel.centerOnUser {
-            let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+            let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
             mapView.setRegion(region, animated: false)
         }
     }
@@ -46,7 +46,7 @@ final class Coordinator: NSObject, MKMapViewDelegate {
         }
     func setInitialRegion(for mapView: MKMapView) {
             if let userLocation = mapView.userLocation.location {
-                let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+                let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
                 mapView.setRegion(region, animated: false)
             }
         }

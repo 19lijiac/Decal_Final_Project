@@ -100,13 +100,51 @@ struct MainFrameView: View {
 //TODO: Fetch Friend List from Firebase and display in sheet view
 struct BottomSheetView: View {
     @State private var searchText = ""
+    private let friends = FirebaseManager.shared.friendList
+    
+    var filteredFriends: [String] {
+        if searchText.isEmpty {
+            return friends
+        } else {
+            return friends.filter { $0.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
     
     var body: some View {
         NavigationView{
-            Text("Searching for \(searchText)?")
-                .searchable(text: $searchText)
-                .navigationTitle("Friends List")
-                .navigationBarTitleDisplayMode(.inline)
+            VStack{
+                Text("Showing results for \"\(searchText)\"")
+                    .searchable(text: $searchText)
+                    .navigationTitle("Friends List")
+                    .navigationBarTitleDisplayMode(.inline)
+                
+                ScrollView{
+                    LazyVStack{
+                        ForEach(filteredFriends, id: \.self) { friend in
+                            NavigationLink(destination: FriendProfileView(friend: friend)) {
+                                ZStack{
+                                    HStack {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .fill(Color(.systemBackground))
+                                            .overlay(
+                                                Image(systemName: "person.crop.circle")
+                                                    .resizable()
+                                                    .frame(width: 50, height: 50)
+                                            )
+                                            .frame(width: 58, height: 52)
+                                        Text(friend)
+                                            .font(.system(size: 20))
+                                            .foregroundColor(Color(.label))
+                                        Spacer()
+                                    }
+                                    .padding(.vertical, 8)
+                                    .allowsHitTesting(false)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

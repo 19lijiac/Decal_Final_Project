@@ -53,7 +53,7 @@ struct MapView: UIViewRepresentable {
         
         
         if viewModel.centerOnUser, let userLocation = viewModel.location {
-                    let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+                    let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
                     uiView.setRegion(region, animated: false)
             DispatchQueue.main.async {
                 viewModel.centerOnUser = false
