@@ -18,6 +18,7 @@ final class LocationTracker: NSObject, ObservableObject {
     @Published var isDarkMode: Bool = false
     @Published var centerOnUser: Bool = true
     @Published var showingPolyline: Bool = true
+    @Published var showingProfileLocation: Bool = false
     @Published var cityName: String = ""
     @Published var stateName: String = ""
     @Published var countryName: String = ""
@@ -25,7 +26,7 @@ final class LocationTracker: NSObject, ObservableObject {
     public var coordinatesCount : Int = 0
     
     //handles REVERSE_GEOCODING request frequency
-    let delayTime = 5.0
+    let delayTime = 50.0
     var lastRequestTime: Date?
     
     
@@ -53,35 +54,38 @@ final class LocationTracker: NSObject, ObservableObject {
 
 extension LocationTracker: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let location = locations.last else { return }
-            DispatchQueue.main.async {
+        guard let location = locations.last else { return }
+        DispatchQueue.main.async {
                 
                 if let lastLocation = self.routeCoordinates.last, lastLocation.latitude != location.coordinate.latitude && lastLocation.longitude != location.coordinate.longitude   {
                     let geoCoder = CLGeocoder()
                     
-                    geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
-                        if let lastRequestTime = self.lastRequestTime,
-                           Date().timeIntervalSince(lastRequestTime) < self.delayTime {
-                               return
+                    if self.showingProfileLocation {
+                        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                            if let lastRequestTime = self.lastRequestTime,
+                               Date().timeIntervalSince(lastRequestTime) < self.delayTime {
+                                   return
+                            }
+                            
+                            
+                            
+                            
+                            if let placemark = placemarks?.first {
+                                self.cityName = placemark.locality ?? "N/A"
+                                self.stateName = placemark.administrativeArea ?? "N/A"
+                                self.countryName = placemark.country ?? "N/A"
+                            } else {
+                                self.cityName = "N/A"
+                                self.stateName = "N/A"
+                                self.countryName = "N/A"
+                            }
+                            
+                            self.lastRequestTime = Date()
                         }
-                        
-                        
-                        
-                        
-                        if let placemark = placemarks?.first {
-                            self.cityName = placemark.locality ?? "N/A"
-                            self.stateName = placemark.administrativeArea ?? "N/A"
-                            self.countryName = placemark.country ?? "N/A"
-                        } else {
-                            self.cityName = "N/A"
-                            self.stateName = "N/A"
-                            self.countryName = "N/A"
-                        }
-                        
-                        self.lastRequestTime = Date()
                     }
-                    
-                    
+                        
+                        
+                   
                             // Append `location` to `routeCoordinates` only when it is not equal to the last element
                     self.routeCoordinates.append(location.coordinate)
                 } else if self.routeCoordinates.isEmpty {

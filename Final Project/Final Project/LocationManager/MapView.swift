@@ -24,6 +24,15 @@ struct MapView: UIViewRepresentable {
         map.showsUserLocation = true
         map.delegate = context.coordinator
         
+        /*
+        map.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+         */
+        
+        map.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(CustomAnnotation.self))
+
+        
+                
+        
         //test
         //map.mapType = .standard // Set map type to standard
         
@@ -64,10 +73,11 @@ struct MapView: UIViewRepresentable {
         for pin in FirebaseManager.shared.noteLocationDictionary {
             uiView.addAnnotation(pin)
         }
+         
         
         //placeholder
         
-        
+        /*
         for friend in FirebaseManager.shared.friendList {
             //print("update")
             let annotCoordinate = CLLocationCoordinate2D(latitude: 999, longitude: 999)
@@ -86,6 +96,34 @@ struct MapView: UIViewRepresentable {
                 FirebaseManager.shared.friendAnnotation[friend] = friendAnnotation
                 uiView.addAnnotation(friendAnnotation)
             }
+        }
+         */
+        for friend in FirebaseManager.shared.friendList {
+            let annotCoordinate = CLLocationCoordinate2D(latitude: 999, longitude: 999)
+            let identifier = "\(friend)"
+            let friendAnnotation = FirebaseManager.shared.friendAnnotation[friend] ?? CustomAnnotation(coordinate: annotCoordinate, identifier: identifier)
+            //friendAnnotation.coordinate = CLLocationCoordinate2D(latitude: friendAnnotation.coordinate.latitude, longitude: friendAnnotation.coordinate.longitude)
+            
+            if !FirebaseManager.shared.checkFriendAnnot.contains(friend) {
+                print("add annotation")
+                print("this is :\(friendAnnotation.coordinate.latitude)")
+                //let annotationView = uiView.view(for: friendAnnotation)
+                uiView.addAnnotation(friendAnnotation)
+                FirebaseManager.shared.checkFriendAnnot.insert(friend)
+            }
+            
+            /*
+            else {
+                print("hit")
+                print("latitude: \(friendAnnotation.coordinate.latitude)")
+                //friendAnnotation.setCoordinate(friendAnnotation.coordinate)
+                if let annotationView = uiView.view(for: friendAnnotation) as? CustomAnnotationView {
+                    print("update")
+                    annotationView.setNeedsDisplay()
+                }
+                //FirebaseManager.shared.friendAnnotation[friend] = friendAnnotation
+            }
+             */
         }
         
        

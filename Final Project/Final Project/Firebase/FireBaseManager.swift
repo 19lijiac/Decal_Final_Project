@@ -246,8 +246,13 @@ class FirebaseManager {
                     let latitude = snapshot.childSnapshot(forPath: "latitude").value as? Double ?? 999
                     let longitude = snapshot.childSnapshot(forPath: "longitude").value as? Double ?? 999
                     let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                    let annotation = CustomAnnotation(coordinate: coordinate, identifier: "\(friend)")
-                    self.friendAnnotation[friend] = annotation
+                    if let friendannotation = FirebaseManager.shared.friendAnnotation[friend] {
+                        friendannotation.setCoordinate(coordinate)
+                    } else {
+                        let friendannotation = CustomAnnotation(coordinate: coordinate, identifier: "\(friend)")
+                        self.friendAnnotation[friend] = friendannotation
+                    }
+                    
                 }) { error in
                     print("Error: \(error.localizedDescription)")
                 }

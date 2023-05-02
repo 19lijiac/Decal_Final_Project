@@ -24,7 +24,8 @@ struct AppContentView: View {
                     } else if navigationManager.currentView == .settingView {
                         SettingView(navigationManager: navigationManager, locationTracker: locationTracker)
                     } else if navigationManager.currentView == .profileView {
-                        ProfileView(locationTracker: locationTracker, navigationManager: navigationManager)
+                        ProfileView(locationTracker: locationTracker, navigationManager: navigationManager).onAppear{locationTracker.showingProfileLocation.toggle()}.onDisappear{locationTracker.showingProfileLocation.toggle()
+                        }
                     } else if navigationManager.currentView == .addFriendView {
                         AddFriendView(navigationManager: navigationManager)
                     } else if navigationManager.currentView == .addStoryView {
@@ -55,7 +56,7 @@ struct AppContentView: View {
             }
 
             // End the background task when the loop is finished
-            //FirebaseManager.shared.checkFriendAnnot = []
+            FirebaseManager.shared.checkFriendAnnot = []
             UIApplication.shared.endBackgroundTask(backgroundTaskID)
             //test
             print("stop")

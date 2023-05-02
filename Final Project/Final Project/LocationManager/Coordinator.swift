@@ -51,6 +51,8 @@ final class Coordinator: NSObject, MKMapViewDelegate {
             }
         }
     
+    
+    /*
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let customAnnotation = annotation as? CustomAnnotation else {
             return nil
@@ -67,5 +69,95 @@ final class Coordinator: NSObject, MKMapViewDelegate {
             annotationView?.addSubview(UIHostingController(rootView: customAnnotationView).view)
             
             return annotationView
+    }
+     */
+    
+    /*
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        
+        guard let customAnnotation = annotation as? CustomAnnotation else {
+            print("error: no customannotation")
+                    return nil
+                }
+                
+        let identifier = customAnnotation.identifier
+         
+        var annotationView: CustomAnnotationView?
+        print("run coordinator")
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? CustomAnnotationView {
+            print("use previous queued view")
+            annotationView = dequeuedView
+        } else {
+            print("create new customannotationview")
+            annotationView = CustomAnnotationView(annotation: customAnnotation, reuseIdentifier: identifier)
+        }
+        
+        return annotationView
+    }
+     */
+    /*
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
+            return nil
+        }
+        
+        var annotationView: MKAnnotationView?
+        
+        if let annotation = annotation as? CustomAnnotation {
+            annotationView = setupCustomAnnotationView(for: annotation, on: mapView)
+        }
+        
+        return annotationView
+    }
+     */
+    
+    
+    /*
+    private func setupCustomAnnotationView(for annotation: CustomAnnotation, on mapView: MKMapView) -> MKAnnotationView {
+        let reuseIdentifier = NSStringFromClass(CustomAnnotation.self)
+        let customAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
+        
+        customAnnotationView.canShowCallout = true
+        
+        // Provide the annotation view's image.
+        let image = annotation.image
+        customAnnotationView.image = image
+        
+        return customAnnotationView
+    }
+     */
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
+            return nil
+        }
+        
+        var annotationView: MKAnnotationView?
+        
+        if let annotation = annotation as? CustomAnnotation {
+            annotationView = setupCustomAnnotationView(in: mapView, for: annotation)
+        }
+        
+        return annotationView
+    }
+    
+    
+    
+    private func setupCustomAnnotationView(in mapView: MKMapView, for annotation: MKAnnotation) -> CustomAnnotationView {
+        let identifier = NSStringFromClass(CustomAnnotation.self)
+
+        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? CustomAnnotationView {
+            annotationView.annotation = annotation
+            return annotationView
+        } else {
+            let customAnnotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            customAnnotationView.canShowCallout = false
+            return customAnnotationView
+        }
     }
 }
